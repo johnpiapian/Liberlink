@@ -1,17 +1,21 @@
 import '@styles/globals.css';
 
-export const meta = {
+import Provider from '@components/Provider';
+
+export const metadata = {
     title: 'My Awesome Site',
     description: 'This is my site description'
 }
 
 const RootLayout = ({ children }) => {
     return (
-        <html lang='en'>
+        <html lang="en">
             <body>
-                <main className='app'>
-                    {children}
-                </main>
+                <Provider>
+                    <main className="app">
+                        {children}
+                    </main>
+                </Provider>
             </body>
         </html>
     );

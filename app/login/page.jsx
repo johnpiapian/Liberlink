@@ -27,20 +27,22 @@ const Home = () => {
 
     return (
         <section className="w-full h-screen flex items-center justify-center bg-gray-100">
-            <div className="bg-white p-8 rounded shadow-lg">
-                <h1 className="text-3xl font-bold text-center mb-4">Login</h1>
-                {providers && Object.values(providers).map((provider) => (
-                    <button
-                        key={provider.id}
-                        className="w-full bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors mb-2"
-                        onClick={() => signIn(provider.id)}
-                    >
-                        Sign In with {provider.name}
-                    </button>
-                ))}
+            <div className="bg-white p-8 rounded shadow-lg w-[350px] mx-auto">
+                <h1 className="text-3xl font-bold text-center mb-4 p-4">Login</h1>
+                {providers &&
+                    Object.values(providers).map((provider) => (
+                        <button
+                            key={provider.id}
+                            className="w-full bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors mb-2"
+                            onClick={() => signIn(provider.id)}
+                        >
+                            Sign In with {provider.name}
+                        </button>
+                    ))}
             </div>
         </section>
     );
+
 };
 
 export default Home;

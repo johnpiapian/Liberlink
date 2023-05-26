@@ -19,7 +19,7 @@ const Nav = () => {
                     <div className="mr-auto">
                         <Link href="/">
                             <span className={`text-white font-bold cursor-pointer tracking-widest`}>
-                                {`<Libralink/>`}
+                                {`<LIBRALINK/>`}
                             </span>
                         </Link>
                     </div>

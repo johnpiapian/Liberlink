@@ -9,7 +9,7 @@ const Home = () => {
     const router = useRouter();
 
     useEffect(() => {
-        if (session?.user) signOut();
+        if (session?.user) signOut({ redirect: false});
         router.push("/login");
     }, [session, router]);
 

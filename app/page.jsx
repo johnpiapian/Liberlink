@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
+import Nav from '@components/Nav';
+
 const Home = () => {
     const router = useRouter();
     const { data: session, status } = useSession({
@@ -13,15 +15,20 @@ const Home = () => {
         }
     });
 
+    if (status === "loading") return null;
+
     return (
-        <section className="w-full flex-center flex-col">
-            {/* {status === 'loading' && <h1 className="text-center">Loading...</h1>} */}
-            {session?.user && (
-                <>
-                    <h1 className="text-center ">Welcome {session.user.name}</h1>
-                </>
-            )}
-        </section>
+        <>
+            <Nav />
+            <section className="w-full flex-center flex-col p-5">
+                {/* {status === 'loading' && <h1 className="text-center">Loading...</h1>} */}
+                {session?.user && (
+                    <>
+                        <h1 className="text-center ">Welcome {session.user.name}</h1>
+                    </>
+                )}
+            </section>
+        </>
     );
 };
 

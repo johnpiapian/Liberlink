@@ -3,8 +3,8 @@ import '@styles/globals.css';
 import Provider from '@components/Provider';
 
 export const metadata = {
-    title: 'My Awesome Site',
-    description: 'This is my site description'
+    title: 'Liberlink',
+    description: 'Liberlink is a social media platform for sharing links.'
 }
 
 const RootLayout = ({ children }) => {

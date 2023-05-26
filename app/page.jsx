@@ -16,7 +16,7 @@ const Home = () => {
     return (
         <section className="w-full flex-center flex-col">
             {/* {status === 'loading' && <h1 className="text-center">Loading...</h1>} */}
-            {session && (
+            {session?.user && (
                 <>
                     <h1 className="text-center ">Welcome {session.user.name}</h1>
                 </>

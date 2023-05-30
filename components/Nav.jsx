@@ -29,6 +29,11 @@ const Nav = () => {
                                 Home
                             </span>
                         </Link>
+                        <Link href="/mylinks">
+                            <span className={`ml-6 cursor-pointer ${isActive("/mylinks")}`}>
+                                My Links
+                            </span>
+                        </Link>
                         <Link href="/profile">
                             <span className={`ml-6 cursor-pointer ${isActive("/profile")}`}>
                                 Profile

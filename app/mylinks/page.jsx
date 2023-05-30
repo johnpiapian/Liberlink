@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import Nav from '@components/Nav';
 import CreateLinkForm from '@components/CreateLinkForm';
 
-const Home = () => {
+const MyLinks = () => {
     const router = useRouter();
     const { data: session, status } = useSession({ required: true});
 
@@ -17,10 +17,10 @@ const Home = () => {
         <>
             <Nav />
             <section className="w-full flex-center flex-col p-5">
-                {/* <CreateLinkForm /> */}
+                <CreateLinkForm />
             </section>
         </>
     );
 };
 
-export default Home;
+export default MyLinks;

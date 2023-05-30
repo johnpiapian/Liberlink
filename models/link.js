@@ -6,15 +6,15 @@ const LinkSchema = new Schema({
         ref: 'User',
         required: [true, 'Owner ID is required!'],
     },
-    link: {
+    url: {
         type: String,
         required: [true, 'Link is required!'],
+        match: [/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/, "Link invalid, it should be a valid URL!"]
     },
     description: {
         type: String,
         required: [true, 'Description is required!'],
     },
-    // Additional fields you may consider adding
     createdAt: {
         type: Date,
         default: Date.now,

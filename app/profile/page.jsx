@@ -9,20 +9,15 @@ import { useRouter } from 'next/navigation';
 
 const Profile = () => {
     const router = useRouter();
-    const { data: session, status } = useSession({
-        required: true,
-        onUnauthenticated() {
-            router.push('/login');
-        }
-    });
+    const { data: session, status } = useSession({ required: true});
+    
+    if (status === "loading") return null;
 
     const handleDelete = () => {
         if(confirm("Are you sure you want to delete your accout?")) {
-            
+            alert("Unfortunately account cannot be deleted at this time.");
         }
     };
-
-    if (status === "loading") return null;
 
     return (
         <>

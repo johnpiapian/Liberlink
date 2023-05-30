@@ -3,17 +3,13 @@
 import { useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+// import { useRequireAuth } from '@utils/auth';
 
 import Nav from '@components/Nav';
 
 const Home = () => {
     const router = useRouter();
-    const { data: session, status } = useSession({
-        required: true,
-        onUnauthenticated() {
-            router.push('/login');
-        }
-    });
+    const { data: session, status } = useSession({ required: true});
 
     if (status === "loading") return null;
 

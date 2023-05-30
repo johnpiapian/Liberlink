@@ -2,12 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { signIn, useSession, getProviders } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Login = () => {
     const router = useRouter();
     const { data: session, status } = useSession();
     const [providers, setProviders] = useState(null);
+
+    const searchParams = useSearchParams();
+    const callbackUrl = searchParams.get("callbackUrl") || "/";
 
     useEffect(() => {
         const fetchProviders = async () => {
@@ -22,8 +25,6 @@ const Login = () => {
         if (session?.user) router.push('/');
     }, [session, router]);
 
-    // TODO: redirect to callbackUrl propertly
-
     // Fix flicker when user is already logged in
     if (status === 'loading' || session?.user) return null;
 
@@ -36,7 +37,7 @@ const Login = () => {
                         <button
                             key={provider.id}
                             className="w-full bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors mb-2"
-                            onClick={() => signIn(provider.id, { callbackUrl: '/' })}
+                            onClick={() => signIn(provider.id, { callbackUrl: callbackUrl })}
                         >
                             Sign In with {provider.name}
                         </button>

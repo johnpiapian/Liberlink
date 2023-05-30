@@ -24,6 +24,9 @@ const Login = () => {
 
     // TODO: redirect to callbackUrl propertly
 
+    // Fix flicker when user is already logged in
+    if (status === 'loading' || session?.user) return null;
+
     return (
         <section className="w-full h-screen flex items-center justify-center bg-gray-100">
             <div className="bg-white p-8 rounded shadow-lg w-[350px] mx-auto">

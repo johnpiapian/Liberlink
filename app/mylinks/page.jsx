@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation';
 import Nav from '@components/Nav';
 import CreateLinkForm from '@components/CreateLinkForm';
 import LinkItem from '@components/LinkItem';
-import { set } from 'mongoose';
 
 const MyLinks = () => {
     const router = useRouter();

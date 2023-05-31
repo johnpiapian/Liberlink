@@ -1,12 +1,23 @@
 import Link from "@models/link";
 import { connectToDB } from "@utils/database";
 
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@app/api/auth/[...nextauth]/route";
+
 export const POST = async (request) => {
-    const { ownerId, url, description } = await request.json();
-    
+    // Check if user is logged in
+    const session = await getServerSession(authOptions);
+        
+    if(!session?.user?.id || !session?.user?.email) {
+        return new Response("Unauthorized", { status: 401 });
+    }
+
+    // Get data from request body
+    let { ownerId, url, description } = await request.json();
     ownerId = ownerId.trim();
-    url = url.trim();
+    url = url.trim(); 
     description = description.trim();
+
 
     // Validate required fields
     if(!ownerId || !url || !description) {

@@ -9,7 +9,7 @@ const LinkSchema = new Schema({
     url: {
         type: String,
         required: [true, 'Link is required!'],
-        match: [/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/, "Link invalid, it should be a valid URL!"]
+        match: [/^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/, "A valid link is required!"]
     },
     description: {
         type: String,

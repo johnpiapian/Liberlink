@@ -3,7 +3,6 @@ import { authOptions } from "@app/api/auth/[...nextauth]/route";
 
 import User from "@models/user";
 import { connectToDB } from "@utils/database";
-import { getCurrentUser } from "@utils/auth";
 
 const getCurrentUser = (session) => {
     if (!session || !session.user) return null;

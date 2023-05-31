@@ -5,7 +5,7 @@ import Provider from '@components/Provider';
 export const metadata = {
     title: 'Liberlink',
     description: 'Liberlink is a social media platform for sharing links.'
-}
+};
 
 const RootLayout = ({ children }) => {
     return (
@@ -19,6 +19,6 @@ const RootLayout = ({ children }) => {
             </body>
         </html>
     );
-}
+};
 
 export default RootLayout;

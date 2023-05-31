@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 
 import Nav from '@components/Nav';
 import CreateLinkForm from '@components/CreateLinkForm';
-import { set } from 'mongoose';
 
 const MyLinks = () => {
     const router = useRouter();
@@ -17,12 +16,30 @@ const MyLinks = () => {
     // Fix flicker
     if (status === "loading") return null;
 
-    const handleCreate = (e) => {
+    const handleCreate = async (e) => {
         e.preventDefault();
-        console.log(link);
 
-        setLink({ url: "", description: "" });
-    }
+        const linkItem = {
+            ownerId: session.user.id,
+            url: link.url,
+            description: link.description
+        };
+
+        // Make a post request with linkItem as body
+        const res = await fetch("/api/link/new", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(linkItem),
+        });
+
+        if(res.ok) {
+
+        } else {
+            alert("An error occured while creating your link.");
+        }
+    };
 
     return (
         <>

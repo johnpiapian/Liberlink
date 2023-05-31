@@ -3,6 +3,15 @@ import { connectToDB } from "@utils/database";
 
 export const POST = async (request) => {
     const { ownerId, url, description } = await request.json();
+    
+    ownerId = ownerId.trim();
+    url = url.trim();
+    description = description.trim();
+
+    // Validate required fields
+    if(!ownerId || !url || !description) {
+        return new Response("Missing required fields", { status: 400 });
+    }
 
     try {
         await connectToDB();

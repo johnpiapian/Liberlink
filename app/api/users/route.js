@@ -1,32 +1,26 @@
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@app/api/auth/[...nextauth]/route";
-
 import User from "@models/user";
 import { connectToDB } from "@utils/database";
 
-const getCurrentUser = (session) => {
-    if (!session || !session.user) return null;
-    return session.user;
-};
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@app/api/auth/[...nextauth]/route";
+
 
 export const GET = async (request, { params }) => {
     try {
-
         // Check for active sessions
         const session = await getServerSession(authOptions);
-        const currentUser = getCurrentUser(session);
 
-        // Unauthorized user
-        if(!currentUser?.id || !currentUser?.email) {
+        if(!session?.user?.id || !session?.user?.email) {
             return new Response("Unauthorized", { status: 401 });
         }
 
         await connectToDB()
 
-        const users = await User.find();
+        // get current user from MongoDB
+        const currentUser = await User.findOne({ _id: session.user.id });
 
-        return new Response(JSON.stringify(users), { status: 200 });
+        return new Response(JSON.stringify(currentUser), { status: 200 });
     } catch (error) {
-        return new Response("Failed to fetch prompts created by user", { status: 500 });
+        return new Response("Failed to fetch users", { status: 500 });
     }
 } 
